@@ -27,6 +27,7 @@ namespace LWSPrototype {
 			m_Animator.SetFloat("Horizontal", horizontal);
 
 			Vector2 motion = new Vector2(horizontal, vertical);
+			motion.Normalize();
 			transform.Translate(motion * Time.deltaTime * m_MoveSpeed);
 		}
 	}
