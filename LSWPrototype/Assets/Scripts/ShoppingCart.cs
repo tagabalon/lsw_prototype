@@ -33,6 +33,14 @@ namespace LWSPrototype {
 			}
 		}
 
+		internal CartItem GetItemAt(int i) {
+            return m_Items[i];
+		}
+
+		internal int GetCount() {
+            return m_Items.Count;
+		}
+
 		private CartItem GetItem(GrocerItems.ItemType itemType) {
 			for(int i = 0; i < m_Items.Count; i++) {
                 if (m_Items[i].m_Item == itemType)

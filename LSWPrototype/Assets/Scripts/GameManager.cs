@@ -28,7 +28,11 @@ namespace LWSPrototype {
 		}
 
 		public void AddToCart(GrocerItem item) {
-			Debug.Log("Add to cart " + item);
+			m_ShoppingCart.AddItem(item);
+		}
+
+		public Inventory GetInventory() {
+			return GetComponent<Inventory>();
 		}
 	}
 

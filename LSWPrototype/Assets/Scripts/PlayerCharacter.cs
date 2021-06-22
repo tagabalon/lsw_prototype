@@ -49,14 +49,14 @@ namespace LWSPrototype {
 					m_ActiveItem = newItem;
 				}
 
-				HUD.GetInstance().ShowContext(m_ActiveItem);
+				GameMenu.GetInstance().ShowContext(m_ActiveItem);
 				//collision.GetComponent<GrocerItem>().ShowContext
 			}
 		}
 
 		private void OnTriggerExit2D(Collider2D collision) {
 			if (collision.CompareTag("GrocerItem")) {
-				HUD.GetInstance().HideContext();
+				GameMenu.GetInstance().HideContext();
 				m_ActiveItem = null;
 			}
 		}
@@ -64,7 +64,7 @@ namespace LWSPrototype {
 		private void OnTriggerStay2D(Collider2D collision) {
 			if (collision.CompareTag("GrocerItem") && m_ActiveItem == null) {
 				m_ActiveItem = collision.GetComponent<GrocerItem>();
-				HUD.GetInstance().ShowContext(m_ActiveItem);
+				GameMenu.GetInstance().ShowContext(m_ActiveItem);
 			}
 		}
 	}

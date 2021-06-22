@@ -5,14 +5,10 @@ using UnityEngine;
 
 namespace LWSPrototype {
     public class HUD : MonoBehaviour {
-        private static HUD m_Instance;
 
         public ShoppingList m_ShoppingList;
         public ContextMenu m_ContextMenu;
 
-		private void Awake() {
-            m_Instance = this;
-		}
 
 		// Start is called before the first frame update
 		void Start() {
@@ -24,16 +20,20 @@ namespace LWSPrototype {
 
         }
 
-        public static HUD GetInstance() {
-            return m_Instance;
+		internal void Show() {
+            gameObject.SetActive(true);
 		}
 
-        public void ShowContext(GrocerItem item) {
+		public void ShowContext(GrocerItem item) {
             m_ContextMenu.Show(item);
 		}
 
 		internal void HideContext() {
             m_ContextMenu.Hide();
         }
+
+		internal void Hide() {
+            gameObject.SetActive(false);
+		}
 	}
 }
