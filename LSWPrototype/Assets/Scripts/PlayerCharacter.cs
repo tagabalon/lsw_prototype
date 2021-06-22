@@ -9,6 +9,7 @@ namespace LWSPrototype {
 
 		public float m_MoveSpeed = 2.0f;
 
+		private GrocerItem m_ActiveItem;
 		private void Awake() {
 			m_Animator = GetComponent<Animator>();
 		}
@@ -29,6 +30,42 @@ namespace LWSPrototype {
 			Vector2 motion = new Vector2(horizontal, vertical);
 			motion.Normalize();
 			transform.Translate(motion * Time.deltaTime * m_MoveSpeed);
+		}
+
+		private void OnTriggerEnter2D(Collider2D collision) {
+
+			if (collision.CompareTag("GrocerItem")) {
+
+				GrocerItem newItem = collision.GetComponent<GrocerItem>();
+				if (m_ActiveItem != null && newItem != m_ActiveItem) {
+					float d1 = Vector3.Distance(transform.position, m_ActiveItem.transform.position);
+					float d2 = Vector3.Distance(transform.position, newItem.transform.position);
+
+					//if the second triggered object is closer, activate it instead
+					if(d2 < d1) {
+						m_ActiveItem = newItem;
+					}
+				} else {
+					m_ActiveItem = newItem;
+				}
+
+				HUD.GetInstance().ShowContext(m_ActiveItem);
+				//collision.GetComponent<GrocerItem>().ShowContext
+			}
+		}
+
+		private void OnTriggerExit2D(Collider2D collision) {
+			if (collision.CompareTag("GrocerItem")) {
+				HUD.GetInstance().HideContext();
+				m_ActiveItem = null;
+			}
+		}
+
+		private void OnTriggerStay2D(Collider2D collision) {
+			if (collision.CompareTag("GrocerItem") && m_ActiveItem == null) {
+				m_ActiveItem = collision.GetComponent<GrocerItem>();
+				HUD.GetInstance().ShowContext(m_ActiveItem);
+			}
 		}
 	}
 }
