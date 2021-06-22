@@ -112,4 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd181b9a6a4deb4a8545127e3a1bef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ItemType: 0
   m_DisplayName: Apple
+  m_SellingPrice: 1.59
+  m_Count: 20

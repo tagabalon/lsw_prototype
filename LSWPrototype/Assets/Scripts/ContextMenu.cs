@@ -7,7 +7,10 @@ using System;
 namespace LWSPrototype {
     public class ContextMenu : MonoBehaviour {
         public TMP_Text m_Label;
+        public TMP_Text m_PriceText;
         private GrocerItem m_Item;
+
+        public ContextButton m_Pickup;
 
         // Start is called before the first frame update
         void Start() {
@@ -31,8 +34,16 @@ namespace LWSPrototype {
 
 		internal void Show(GrocerItem item) {
             m_Label.text = item.DisplayName;
+            m_PriceText.text = item.SellingPrice.ToString();
             m_Item = item;
             gameObject.SetActive(true);
 		}
-	}
+
+        public void ContextAction(ContextButton button) {
+            if(button == m_Pickup) {
+
+                GameManager.GetInstance().AddToCart(m_Item);
+			}
+        }
+    }
 }
