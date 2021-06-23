@@ -69,6 +69,9 @@ namespace LWSPrototype {
             if(button == m_Pickup) {
 
                 GameManager.GetInstance().AddToCart(m_Item);
+			}else if(button == m_Buy) {
+
+                GameManager.GetInstance().Checkout();
 			}
         }
     }

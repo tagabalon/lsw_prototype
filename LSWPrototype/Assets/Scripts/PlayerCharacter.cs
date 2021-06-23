@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace LWSPrototype {
 
 		public float m_MoveSpeed = 2.0f;
 
+		private ShoppingList.Item[] m_ShoppingList;
+
 		private GrocerItem m_ActiveItem;
 		private void Awake() {
 			m_Animator = GetComponent<Animator>();
@@ -17,6 +20,10 @@ namespace LWSPrototype {
 		// Start is called before the first frame update
 		void Start() {
 
+		}
+
+		internal void Disable() {
+			enabled = false;
 		}
 
 		// Update is called once per frame
@@ -56,6 +63,14 @@ namespace LWSPrototype {
 			}
 		}
 
+		internal void Enable() {
+			enabled = true;
+		}
+
+		internal ShoppingList.Item[] GetList() {
+			return m_ShoppingList;
+		}
+
 		private void OnTriggerExit2D(Collider2D collision) {
 			if (collision.CompareTag("GrocerItem")) {
 				GameMenu.GetInstance().HideContext();
@@ -68,6 +83,10 @@ namespace LWSPrototype {
 				m_ActiveItem = collision.GetComponent<GrocerItem>();
 				GameMenu.GetInstance().ShowContext(m_ActiveItem);
 			}
+		}
+
+		public void SetList(ShoppingList.Item[] shoppingList) {
+			m_ShoppingList = shoppingList;
 		}
 	}
 }
