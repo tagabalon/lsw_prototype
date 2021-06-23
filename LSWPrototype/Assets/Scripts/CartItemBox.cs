@@ -22,10 +22,10 @@ namespace LWSPrototype {
 		internal void ShowItem(string displayName, int count, float price) {
             m_DisplayName.text = displayName;
             m_Count.text = "x" + count.ToString();
-            m_Price.text = price.ToString("#.##");
+            m_Price.text = price.ToString("0.00");
 
             float total = count * price;
-            m_TotalPrice.text = total.ToString("#.##");
+            m_TotalPrice.text = total.ToString("0.00");
 
             gameObject.SetActive(true);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System;
 
 namespace LWSPrototype {
     public class ContextButton : MonoBehaviour {
@@ -27,5 +28,13 @@ namespace LWSPrototype {
                 m_OnKeyPress.Invoke(this);
 			}
         }
-    }
+
+		internal void Show() {
+            gameObject.SetActive(true);
+		}
+
+		internal void Hide() {
+            gameObject.SetActive(false);
+        }
+	}
 }

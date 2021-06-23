@@ -46,7 +46,9 @@ namespace LWSPrototype {
 
 		// Start is called before the first frame update
 		void Start() {
-
+            Inventory inventory = GameManager.GetInstance().GetInventory();
+            m_DisplayName = inventory.GetStock(m_ItemType).m_DisplayName;
+            m_SellingPrice = inventory.GetStock(m_ItemType).m_Price;
         }
 
         // Update is called once per frame

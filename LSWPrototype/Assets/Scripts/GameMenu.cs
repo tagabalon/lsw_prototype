@@ -38,5 +38,14 @@ namespace LWSPrototype {
             m_Hud.Hide();
             m_Cart.ShowShoppingCart(GameManager.GetInstance().m_ShoppingCart);
         }
-    }
+
+        public void CloseCart() {
+            m_Hud.Show();
+            m_Cart.Hide();
+		}
+
+		internal void ShowContext(TillMachine tillMachine) {
+            m_Hud.ShowContext(tillMachine);
+        }
+	}
 }

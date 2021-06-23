@@ -51,6 +51,8 @@ namespace LWSPrototype {
 
 				GameMenu.GetInstance().ShowContext(m_ActiveItem);
 				//collision.GetComponent<GrocerItem>().ShowContext
+			} else if (collision.CompareTag("Till")) {
+				GameMenu.GetInstance().ShowContext(collision.GetComponent<TillMachine>());
 			}
 		}
 

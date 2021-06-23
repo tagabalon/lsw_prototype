@@ -35,5 +35,9 @@ namespace LWSPrototype {
 		internal void Hide() {
             gameObject.SetActive(false);
 		}
+
+		internal void ShowContext(TillMachine tillMachine) {
+			m_ContextMenu.Show(tillMachine);
+		}
 	}
 }
