@@ -35,7 +35,7 @@ namespace LWSPrototype {
                     } else {
                         CartItemBox newItem = Instantiate<CartItemBox>(m_ItemBox);
                         newItem.transform.parent = m_ItemBox.transform.parent;
-                        newItem.transform.localScale = Vector3.one;
+                        newItem.GetComponent<RectTransform>().localScale = Vector3.one;
                         newItem.ShowItem(stock.m_DisplayName, cartItem.m_Count, stock.m_Price);
                         m_Items.Add(newItem);
                     }

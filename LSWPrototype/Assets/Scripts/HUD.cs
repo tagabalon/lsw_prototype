@@ -12,7 +12,7 @@ namespace LWSPrototype {
 		public TMP_Text m_Timer;
 
 		private int m_MaxTime;
-		private float m_CurrentTime;
+		private float m_CurrentTime = 10;
 
 		// Start is called before the first frame update
 		void Start() {
@@ -24,11 +24,15 @@ namespace LWSPrototype {
 
 			m_CurrentTime -= Time.deltaTime;
 
+			if(m_CurrentTime <= 0) {
+				GameManager.GetInstance().GameOver();
+				return;
+			}
+
 			int _time = Mathf.RoundToInt(m_CurrentTime);
 			string minutes = Mathf.Floor(_time / 60).ToString("00");
 			string seconds = (_time % 60).ToString("00");
 			m_Timer.text = minutes + ":" + seconds;
-
 
 		}
 
@@ -64,6 +68,10 @@ namespace LWSPrototype {
 
 		internal void ShowContext(TillMachine tillMachine) {
 			m_ContextMenu.Show(tillMachine);
+		}
+
+		internal int GetRemainingTime() {
+			return Mathf.RoundToInt(m_CurrentTime);
 		}
 	}
 }

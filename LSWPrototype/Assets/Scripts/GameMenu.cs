@@ -15,13 +15,25 @@ namespace LWSPrototype {
         public PlayerCharacter m_Player;
         private int m_TimeLimit;
         public TMP_Text m_Time;
+        public DebriefPanel m_DebriefPanel;
+        public Image m_GameOverPanel;
         private void Awake() {
             m_Instance = this;
         }
-        // Start is called before the first frame update
-        void Start() {
+
+		internal void ShowGameOver() {
+            m_Hud.Hide();
+            m_GameOverPanel.gameObject.SetActive(true);
+
+            m_Player.Disable();
+        }
+
+		// Start is called before the first frame update
+		void Start() {
             m_Hud.Show();
             m_Cart.Hide();
+            m_DebriefPanel.Hide();
+            m_GameOverPanel.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -50,6 +62,7 @@ namespace LWSPrototype {
 		}
 
 		internal void ShowBriefing(ShoppingList.Item[] shoppingList, int time) {
+            m_GameOverPanel.gameObject.SetActive(false);
             m_Player.SetList(shoppingList);
             m_BriefingList.ShowList(shoppingList);
             m_TimeLimit = time;
@@ -71,7 +84,23 @@ namespace LWSPrototype {
             m_Hud.ShowContext(tillMachine);
         }
 
-        public void CloseBriefing() {
+		internal void ShowDebriefing(ShoppingCart shoppingCart) {
+            int remainingTime = m_Hud.GetRemainingTime();
+
+            m_DebriefPanel.ShowDebrief(m_Player.GetList(), shoppingCart, remainingTime);
+
+            m_Player.Disable();
+		}
+
+		internal void HideHUD() {
+            m_Hud.Hide();
+		}
+
+        public int GetRemainingTime() {
+            return m_Hud.GetRemainingTime();
+		}
+
+		public void CloseBriefing() {
             m_BriefingPanel.gameObject.SetActive(false);
             m_Hud.Show(m_Player.GetList(), m_TimeLimit); ;
             m_Player.Enable();

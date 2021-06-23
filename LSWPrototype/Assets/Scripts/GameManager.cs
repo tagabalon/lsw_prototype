@@ -26,8 +26,12 @@ namespace LWSPrototype {
 
         }
 
-        // Update is called once per frame
-        void Update() {
+		internal void GameOver() {
+			m_GameMenu.ShowGameOver();
+		}
+
+		// Update is called once per frame
+		void Update() {
 
         }
 
@@ -84,8 +88,11 @@ namespace LWSPrototype {
 			return items.ToArray();
 		}
 
-		internal void Checkout() {
-			
+		public void Checkout() {
+			m_GameMenu.HideHUD();
+
+			m_GameMenu.ShowDebriefing(m_ShoppingCart);
+			m_Player.Disable();
 		}
 	}
 

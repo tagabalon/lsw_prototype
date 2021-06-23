@@ -37,6 +37,9 @@ namespace LWSPrototype {
             return m_Items[i];
 		}
 
+        public CartItem[] GetItems() {
+            return m_Items.ToArray();
+		}
 		internal int GetCount() {
             return m_Items.Count;
 		}
